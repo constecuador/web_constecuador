@@ -1,0 +1,9 @@
+Paleta Principal
+    - Azul claro: #46A2EA
+    - Azul principal: #1E86D9
+    - Azul oscuro: #0F5495
+    - Fondo: #F1F7FE
+    - Texto: #0D2744
+
+Color de acento
+    - Naranja: #FF8C42
