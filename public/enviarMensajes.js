@@ -153,7 +153,7 @@
     btnWA.textContent = 'Enviando...';
 
     try {
-      const resp = await fetch('/api/consulta', {
+      const resp = await fetch('https://web-constecuador.onrender.com/api/consulta', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, celular, correo, mensaje, productos: nombresProductos })
@@ -256,7 +256,7 @@ form.addEventListener("submit", async (e) => {
 
     }
 
-    const respuesta = await fetch("/enviar", {
+    const respuesta = await fetch("https://web-constecuador.onrender.com/enviar", {
 
         method: "POST",
 
