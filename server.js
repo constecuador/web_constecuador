@@ -23,16 +23,13 @@ const WA_MI_NUMERO = process.env.WA_NUMERO;
 /* ====================================
    MIDDLEWARES
 ==================================== */
-app.use(express.static(__dirname));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 /* ====================================
    RUTA PRINCIPAL
 ==================================== */
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 /* ====================================
    TEST WHATSAPP
