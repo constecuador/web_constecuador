@@ -4,30 +4,26 @@ const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
 const { Resend } = require('resend');
-
 const cors = require('cors');
 
+// ✅ PRIMERO defines app
+const app  = express();
+const PORT = process.env.PORT || 3000;
+
+// ✅ LUEGO usas app
 app.use(cors({
   origin: ['https://constecuador.com', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
-
-// Manejo explícito de preflight
 app.options('*', cors());
 
-
-//Esto se quita
-console.log("=================================");
-console.log("RESEND_API_KEY:", process.env.RESEND_API_KEY);
-console.log("TO_EMAIL:", process.env.TO_EMAIL);
-console.log("=================================");
+// ✅ LUEGO el resto de middlewares
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-const app  = express();
-const PORT = process.env.PORT || 3000;
 
 const WA_TOKEN     = process.env.WA_TOKEN;
 const WA_PHONE_ID  = process.env.WA_PHONE_ID;
