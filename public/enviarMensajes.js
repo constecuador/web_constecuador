@@ -279,8 +279,10 @@ form.addEventListener("submit", async (e) => {
     const data = await respuesta.json();
 
     if(data.ok){
-        alert("Mensaje enviado correctamente");
         form.reset();
+        document.getElementById('modalExito').classList.add('active');
+    } else {
+        alert("Error al enviar el mensaje");
     }
 
 });
