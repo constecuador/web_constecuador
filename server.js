@@ -5,6 +5,19 @@ const path = require('path');
 const fetch = require('node-fetch');
 const { Resend } = require('resend');
 
+const cors = require('cors');
+
+app.use(cors({
+  origin: ['https://constecuador.com', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// Manejo explícito de preflight
+app.options('*', cors());
+
+
 //Esto se quita
 console.log("=================================");
 console.log("RESEND_API_KEY:", process.env.RESEND_API_KEY);
