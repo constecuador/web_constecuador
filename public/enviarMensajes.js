@@ -8,12 +8,13 @@
      CATÁLOGO — debe coincidir con data-producto-id del HTML
   ---------------------------------------------------------- */
   const PRODUCTOS_CATALOGO = [
-    { id: 'vigas-teka',        nombre: 'Vigas de Teka',       categoria: 'Madera' },
-    { id: 'duelas-madera',     nombre: 'Duelas de Madera',    categoria: 'Madera' },
-    { id: 'pellets-madera',    nombre: 'Pellets de Madera',   categoria: 'Biomasa' },
-    { id: 'pellets-plasticos', nombre: 'Pellets Plásticos',   categoria: 'Industrial' },
-    { id: 'morteros-bondex',   nombre: 'Morteros Bondex',     categoria: 'Construcción' }
-  ];
+  { id: 'vigas-teka',        nombre: 'Vigas de Teka',       categoria: 'Madera' },
+  { id: 'duelas-madera',     nombre: 'Duelas de Madera',    categoria: 'Madera' },
+  { id: 'pellets-madera',    nombre: 'Pellets de Madera',   categoria: 'Biomasa' },
+  { id: 'pellets-plasticos', nombre: 'Pellets Plásticos',   categoria: 'Industrial' },
+  { id: 'morteros-bondex',   nombre: 'Morteros Bondex',     categoria: 'Construcción' },
+  { id: 'saman-madera',      nombre: 'Samán de Madera',     categoria: 'Madera' }  // ← nuevo
+];
 
   /* ----------------------------------------------------------
      ESTADO
