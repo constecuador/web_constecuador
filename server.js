@@ -11,13 +11,13 @@ const app  = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ LUEGO usas app
+// Solo deja esto:
 app.use(cors({
   origin: ['https://constecuador.com', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
-app.options('/(.*)', cors());
 
 // ✅ LUEGO el resto de middlewares
 app.use(express.json({ limit: '10mb' }));
