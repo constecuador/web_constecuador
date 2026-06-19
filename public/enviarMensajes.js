@@ -223,8 +223,13 @@
 const form = document.getElementById("formContacto");
 
 form.addEventListener("submit", async (e) => {
-
     e.preventDefault();
+
+    const btn = form.querySelector("button[type='submit']");
+    
+    // ← Mostrar carga
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
 
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
@@ -235,54 +240,59 @@ form.addEventListener("submit", async (e) => {
     let longitud = null;
 
     try {
-
         const posicion = await new Promise((resolve, reject) => {
-
-            navigator.geolocation.getCurrentPosition(
-                resolve,
-                reject,
-                {
-                    enableHighAccuracy: true
-                }
-            );
-
+            navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true });
         });
-
         latitud = posicion.coords.latitude;
         longitud = posicion.coords.longitude;
-
     } catch {
-
         console.log("Usuario no permitió ubicación");
-
     }
 
-    const respuesta = await fetch("https://web-constecuador.onrender.com/enviar", {
+    try {
+        const respuesta = await fetch("https://web-constecuador.onrender.com/enviar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nombre, apellido, correo, mensaje, latitud, longitud })
+        });
 
-        method: "POST",
+        const data = await respuesta.json();
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+        if (data.ok) {
+            form.reset();
+            btn.textContent = "✓ Mensaje enviado";
+            btn.style.background = "linear-gradient(135deg, #25D366, #128C7E)";
+            btn.style.color = "#fff";
+            
+            // ← Resetear botón después de 4 segundos
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = "Enviar Mensaje";
+                btn.style.background = "";
+                btn.style.color = "";
+            }, 4000);
+        } else {
+            btn.disabled = false;
+            btn.textContent = "Error, intenta de nuevo";
+            btn.style.background = "linear-gradient(135deg, #e53e3e, #c53030)";
+            btn.style.color = "#fff";
+            setTimeout(() => {
+                btn.textContent = "Enviar Mensaje";
+                btn.style.background = "";
+                btn.style.color = "";
+            }, 3000);
+        }
 
-        body: JSON.stringify({
-            nombre,
-            apellido,
-            correo,
-            mensaje,
-            latitud,
-            longitud
-        })
-
-    });
-
-    const data = await respuesta.json();
-
-    if(data.ok){
-        form.reset();
-        document.getElementById('modalExito').classList.add('active');
-    } else {
-        alert("Error al enviar el mensaje");
+    } catch (err) {
+        btn.disabled = false;
+        btn.textContent = "Error de conexión";
+        btn.style.background = "linear-gradient(135deg, #e53e3e, #c53030)";
+        btn.style.color = "#fff";
+        setTimeout(() => {
+            btn.textContent = "Enviar Mensaje";
+            btn.style.background = "";
+            btn.style.color = "";
+        }, 3000);
+        console.error(err);
     }
-
 });
