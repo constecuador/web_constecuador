@@ -572,3 +572,8 @@
 
 
 
+/***** Efecto de deslizar  ****/
+document.querySelector('.btnExplorar').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#product-gallery').scrollIntoView({ behavior: 'smooth' });
+});

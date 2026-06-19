@@ -3,6 +3,10 @@
     margin: 0px 0px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*************************** HEADER (Encabezado) ***************************/
 /* etiqueta: encabezado01 */
 .encabezado01{
