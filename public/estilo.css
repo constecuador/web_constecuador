@@ -539,16 +539,16 @@
   flex-direction: row;
 }
 
-.pg-card--fullwidth .pg-card__image {
-  width: 380px;
-  min-height: 260px;
+.pg-card--featured .pg-card__image {
+  width: 45%;
+  min-height: 280px;
   height: auto;
   align-self: stretch;
-  flex-shrink: 0;
   border-bottom: none;
   border-right: 2px solid var(--texto);
+  flex-shrink: 0;
   background-size: cover;
-  background-position: center center;
+  background-position: center;
 }
 
 .pg-card--featured .pg-card__body {
@@ -587,6 +587,34 @@
   border: 1.5px solid var(--texto);
   border-radius: 50px;
   margin-bottom: 14px;
+}
+
+/* Imagen Doble para saman de madera*/
+.pg-card__image--double {
+  width: 380px;
+  height: 100%;          
+  flex-shrink: 0;
+  border-right: 2px solid var(--texto);
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.pg-card--fullwidth {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: stretch;  
+}
+
+.pg-card__image--double > div {
+  flex: 1;
+  min-height: 0;        
+  background-size: cover;
+  background-position: center;
+}
+
+.pg-card__image--double > div:first-child {
+  border-bottom: 2px solid var(--texto);
 }
 
 .pg-badge--madera       { background: #dbeafe; color: #1e40af; }
