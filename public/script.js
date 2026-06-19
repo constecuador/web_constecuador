@@ -572,8 +572,22 @@
 
 
 
-/***** Efecto de deslizar  ****/
+/***** Efecto de deslizar *****/
 document.querySelector('.btnExplorar').addEventListener('click', function(e) {
     e.preventDefault();
     document.querySelector('#product-gallery').scrollIntoView({ behavior: 'smooth' });
+});
+
+
+
+/***** Bloquear F12 y teclas (fácil de evadir) *****/
+document.addEventListener('keydown', function(e) {
+    if (
+        (e.ctrlKey && e.key.toLowerCase() === 'u') ||
+        (e.key === 'F12') ||
+        (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase()))
+    ) {
+        e.preventDefault();
+        return false;
+    }
 });
