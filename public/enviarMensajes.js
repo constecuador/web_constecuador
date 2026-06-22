@@ -206,96 +206,16 @@
   /* ----------------------------------------------------------
      CONECTAR BOTONES DEL HTML
   ---------------------------------------------------------- */
-    /* ----------------------------------------------------------
-     CONECTAR BOTONES DEL HTML
-  ---------------------------------------------------------- */
   document.addEventListener('click', function (e) {
-      const btn = e.target.closest('.pg-btn');
-      if (!btn) return;
-      abrirDrawer(btn.dataset.productoId);
-    });
+    const btn = e.target.closest('.pg-btn');
+    if (!btn) return;
+    abrirDrawer(btn.dataset.productoId);
+  });
 
-    /* Inicializar opciones */
-    renderOpciones();
+  /* Inicializar opciones */
+  renderOpciones();
 
-  })();  // ← aquí cierra el IIFE
-
-
-// ✅ ESTO va FUERA del IIFE — borra el bloque antiguo "const form" y pon esto:
-document.addEventListener("DOMContentLoaded", () => {
-
-    const btnCerrar = document.getElementById("cerrarModal");
-    if (btnCerrar) {
-        btnCerrar.addEventListener("click", () => {
-            document.getElementById("modalExito").classList.remove("active");
-        });
-    }
-
-    const formulario = document.getElementById("formContacto");
-    if (!formulario) return;
-
-    formulario.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const btn = formulario.querySelector("button[type='submit']");
-        btn.disabled = true;
-        btn.textContent = "Enviando...";
-
-        const nombre   = document.getElementById("nombre").value;
-        const apellido = document.getElementById("apellido").value;
-        const correo   = document.getElementById("correo").value;
-        const mensaje  = document.getElementById("mensaje").value;
-
-        let latitud = null, longitud = null;
-        try {
-            const pos = await new Promise((resolve, reject) =>
-                navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true })
-            );
-            latitud  = pos.coords.latitude;
-            longitud = pos.coords.longitude;
-        } catch {
-            console.log("Usuario no permitió ubicación");
-        }
-
-        const datos = { nombre, apellido, correo, mensaje, latitud, longitud };
-
-        try {
-            const response = await fetch("https://web-constecuador.onrender.com/enviar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(datos)
-            });
-
-            const resultado = await response.json();
-
-            if (resultado.ok) {
-                document.getElementById("modalExito").classList.add("active");
-                formulario.reset();
-                btn.disabled = false;
-                btn.textContent = "✓ Mensaje enviado";
-                btn.style.background = "linear-gradient(135deg, #25D366, #128C7E)";
-                btn.style.color = "#fff";
-                setTimeout(() => {
-                    btn.textContent = "Enviar Mensaje";
-                    btn.style.background = "";
-                    btn.style.color = "";
-                }, 4000);
-            } else {
-                btn.disabled = false;
-                btn.textContent = "Error, intenta de nuevo";
-                setTimeout(() => { btn.textContent = "Enviar Mensaje"; }, 3000);
-            }
-
-        } catch (err) {
-            console.error(err);
-            btn.disabled = false;
-            btn.textContent = "Error de conexión";
-            setTimeout(() => { btn.textContent = "Enviar Mensaje"; }, 3000);
-        }
-    });
-
-});
-
+})();
 
 
 
