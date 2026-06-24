@@ -8,15 +8,7 @@ const cors    = require('cors');
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
-/* ====================================
-   VARIABLES DE ENTORNO
-   En config.env deben estar EXACTAMENTE así:
-   WA_TOKEN=EAAVvKKLp...  (token permanente del System User)
-   WA_PHONE_ID=122103648981361851  (ID numérico del número, no el +1 555...)
-   WA_NUMERO=593969223703  (sin +, sin espacios — tu celular Ecuador)
-   RESEND_API_KEY=re_...
-   TO_EMAIL=gerenciaconstecuador@gmail.com
-==================================== */
+
 const WA_TOKEN     = process.env.WA_TOKEN;
 const WA_PHONE_ID  = process.env.WA_PHONE_ID;
 const WA_MI_NUMERO = process.env.WA_NUMERO;   // destino fijo — NUNCA viene del cliente
