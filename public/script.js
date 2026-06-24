@@ -6,67 +6,42 @@
 
 (function () {
 
-  /* ----------------------------------------------------------
-     1. ESTADOS INICIALES
-  ---------------------------------------------------------- */
   const cards = document.querySelectorAll('.card');
 
-  // Cada card: guarda su rotación de reposo y la lanza desde arriba
   cards.forEach(card => {
     const rot = parseFloat(card.dataset.rot) || 0;
     card.dataset.restRot = rot;
-    gsap.set(card, { y: -700, rotation: rot + 22, opacity: 0, scale: 0.75 });
+    gsap.set(card, { y: -600, rotation: rot + 22, opacity: 0, scale: 0.75 });
   });
 
-  gsap.set('#titleTop .word > span', { y: '110%' });
-  gsap.set('#titleBig .letter',      { y: 70, opacity: 0 });
-  gsap.set('#subline',               { opacity: 0, y: 16 });
+  gsap.set('.hero-text',    { opacity: 0, x: -40 });
+  gsap.set('.hero-divider', { scaleX: 0, opacity: 0, transformOrigin: 'left center' });
+  gsap.set('.hero-badge',   { opacity: 0, y: 20 });
 
-
-  /* ----------------------------------------------------------
-     2. TIMELINE DE ENTRADA
-  ---------------------------------------------------------- */
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   tl
-    // Título pequeño sube desde abajo (clip)
-    .to('#titleTop .word > span', {
-      y: '0%',
-      duration: 0.85,
-      stagger: 0.08
+    .to('.hero-text', {
+      opacity: 1, x: 0, duration: 0.9
     }, 0.2)
 
-    // Letras del título grande caen con rebote
-    .to('#titleBig .letter', {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      stagger: 0.045,
-      ease: 'back.out(1.7)'
-    }, 0.45)
+    .to('.hero-divider', {
+      scaleX: 1, opacity: 1, duration: 0.6, ease: 'power2.out'
+    }, 0.7)
 
-    // Cards caen desde arriba con stagger desde el centro
     .to(cards, {
-      y: 0,
-      opacity: 1,
-      scale: 1,
+      y: 0, opacity: 1, scale: 1,
       rotation: (i, el) => parseFloat(el.dataset.restRot) || 0,
       duration: 1.1,
       stagger: { each: 0.08, from: 'center' },
       ease: 'back.out(1.4)'
-    }, 0.7)
+    }, 0.5)
 
-    // Sublinea aparece al final
-    .to('#subline', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8
-    }, 1.5);
+    .to('.hero-badge', {
+      opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out'
+    }, 1.1);
 
-
-  /* ----------------------------------------------------------
-     3. FLOTACIÓN CONTINUA DE CARDS
-  ---------------------------------------------------------- */
+  /* Flotación continua */
   cards.forEach((card, i) => {
     const rot = parseFloat(card.dataset.restRot) || 0;
     gsap.to(card, {
@@ -80,10 +55,7 @@
     });
   });
 
-
-  /* ----------------------------------------------------------
-     4. PARALLAX CON EL MOUSE
-  ---------------------------------------------------------- */
+  /* Parallax mouse */
   const hero = document.getElementById('hero');
   let mx = 0, my = 0, tx = 0, ty = 0;
 
@@ -92,7 +64,6 @@
     mx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
     my = ((e.clientY - r.top)  / r.height - 0.5) * 2;
   });
-
   hero.addEventListener('mouseleave', () => { mx = 0; my = 0; });
 
   function parallaxLoop() {
@@ -106,64 +77,71 @@
   }
   parallaxLoop();
 
-
-  /* ----------------------------------------------------------
-     5. HOVER 3D EN CADA CARD
-  ---------------------------------------------------------- */
+  /* Hover 3D cards */
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {
       const r  = card.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width  - 0.5;
       const py = (e.clientY - r.top)  / r.height - 0.5;
       gsap.to(card, {
-        rotateX: -py * 14,
-        rotateY:  px * 14,
-        scale: 1.1,
-        duration: 0.4,
-        ease: 'power2.out',
-        transformPerspective: 700,
-        overwrite: 'auto'
+        rotateX: -py * 14, rotateY: px * 14, scale: 1.1,
+        duration: 0.4, ease: 'power2.out',
+        transformPerspective: 700, overwrite: 'auto'
       });
     });
-
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: 'elastic.out(1, 0.6)',
-        overwrite: 'auto'
+        rotateX: 0, rotateY: 0, scale: 1,
+        duration: 0.8, ease: 'elastic.out(1, 0.6)', overwrite: 'auto'
       });
-    });
-  });
-
-
-  /* ----------------------------------------------------------
-     6. HOVER EN "big results" → letras suben/bajan
-  ---------------------------------------------------------- */
-  const bigWrap = document.getElementById('titleBigWrap');
-
-  bigWrap.addEventListener('mouseenter', () => {
-    gsap.to('#titleBig .letter', {
-      y: -7,
-      duration: 0.5,
-      stagger: 0.03,
-      ease: 'back.out(1.6)'
-    });
-  });
-
-  bigWrap.addEventListener('mouseleave', () => {
-    gsap.to('#titleBig .letter', {
-      y: 0,
-      duration: 0.6,
-      stagger: 0.03,
-      ease: 'elastic.out(1, 0.6)'
     });
   });
 
 })();
 
+
+/* Animación scroll pg-cards */
+(function () {
+  var cards = document.querySelectorAll('.pg-card');
+  if (!cards.length) return;
+  cards.forEach(function (card) {
+    card.style.opacity   = '0';
+    card.style.transform = 'translateY(32px)';
+    card.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  });
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var card  = entry.target;
+      var index = Array.from(cards).indexOf(card);
+      setTimeout(function () {
+        card.style.opacity   = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 80);
+      observer.unobserve(card);
+    });
+  }, { threshold: 0.12 });
+  cards.forEach(function (card) { observer.observe(card); });
+})();
+
+
+/* Scroll suave botón explorar */
+document.querySelector('.btnExplorar').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.querySelector('#product-gallery').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* Bloquear F12 */
+document.addEventListener('keydown', function(e) {
+  if (
+    (e.ctrlKey && e.key.toLowerCase() === 'u') ||
+    (e.key === 'F12') ||
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase()))
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
 /**************************************************************************************/
 
 /* ============================================================

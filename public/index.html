@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CONSTECUADOR S.A.S</title>
-    <link rel="shortcut icon" href="./img/constecuador_sinFondo.ico">
+    <link rel="shortcut icon" href="./img/constecuador_sinFondo.ico" />
     <link
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css"
@@ -16,7 +16,7 @@
     <header>
       <div class="encabezado01">
         <div class="correo">
-          <h5>gerenciaconstecuador@gmail.com</h5>
+          <h5>gerencia@constecuador.com</h5>
         </div>
         <div class="ico_plataforma">
           <i class="fi fi-brands-facebook"></i>
@@ -31,7 +31,16 @@
           <img src="img/constecuador_sinFondo.webp" alt="logo principal" />
         </div>
         <div class="btn">
-          <div class="btnContacto" onclick="document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">Contáctanos</div>
+          <div
+            class="btnContacto"
+            onclick="
+              document
+                .querySelector('#contacto')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            Contáctanos
+          </div>
         </div>
       </div>
     </header>
@@ -40,74 +49,81 @@
     <main>
       <!-- SECCIÓN 1: HERO -->
       <section class="hero" id="hero">
-        <h2 class="title-top" id="titleTop">
-          <span class="word"><span>Construye y exporta</span></span
-          >&nbsp;<span class="word"><span>,</span></span>
-        </h2>
+         <img src="img/fondo_constecuador.webp" alt="Banner Constecuador">
 
-        <div class="title-big-wrap" id="titleBigWrap">
-          <div class="title-big" id="titleBig">
-            <span class="letter">c</span>
-            <span class="letter">o</span>
-            <span class="letter">n</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">c</span>
-            <span class="letter">o</span>
-            <span class="letter">n</span>
-            <span class="letter">f</span>
-            <span class="letter">i</span>
-            <span class="letter">a</span>
-            <span class="letter">n</span>
-            <span class="letter">z</span
-              ><span class="letter">a</span>
+        <div class="hero-text">
+          <h2 class="title-top">Construye y exporta,</h2>
+          <div class="title-big-wrap" id="titleBigWrap">
+            <p class="title-big">con confianza</p>
+            <p class="title-big">y respaldo</p>
+          </div>
+          <div class="hero-divider"></div>
+          <p class="hero-sub">
+               Impulsamos el crecimiento de empresas y proyectos a través de productos de
+              <strong>alta calidad</strong>, construyendo relaciones basadas en la
+              <strong>confianza</strong>, el <strong>compromiso</strong> y la
+              excelencia en cada operación.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 1.1 HERO -->
+      <section class="seccion-productos">
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <span class="badge-icon">🏆</span>
+            <span>Calidad<br />Garantizada</span>
+          </div>
+          <div class="hero-badge">
+            <span class="badge-icon">🤝</span>
+            <span>Confianza<br />y Respaldo</span>
+          </div>
+          <div class="hero-badge">
+            <span class="badge-icon">🌐</span>
+            <span>Experiencia en<br />Exportación</span>
+          </div>
+          <div class="hero-badge">
+            <span class="badge-icon">🌱</span>
+            <span>Comprometidos<br />con el Desarrollo</span>
           </div>
         </div>
-
         <div class="cards-row" id="cardsRow">
           <div class="card" data-rot="-9" data-depth="14">
             <img
               src="img/productos/Pellet_madera.webp"
-              alt="Pellet de madera"
+              alt="Alimentos Balanceados"
             />
+            <span class="card-label">Alimentos<br />Balanceados</span>
           </div>
           <div class="card" data-rot="-5" data-depth="10">
-            <img src="img/productos/vigas_teka.webp" alt="Vigas teka" />
+            <img src="img/productos/vigas_teka.webp" alt="Madera" />
+            <span class="card-label">Madera</span>
           </div>
           <div class="card" data-rot="-2" data-depth="8">
-            <img
-              src="img/productos/duelas_madera.webp"
-              alt="Duelas de madera"
-            />
+            <img src="img/productos/pellets_plasticos.webp" alt="Plásticos" />
+            <span class="card-label">Plásticos</span>
           </div>
           <div class="card" data-rot="3" data-depth="12">
-            <img
-              src="img/productos/pellets_plasticos.webp"
-              alt="Pellet plastico"
-            />
+            <img src="img/productos/duelas_madera.webp" alt="Tableros" />
+            <span class="card-label">Tableros</span>
           </div>
           <div class="card" data-rot="0" data-depth="6">
             <img
-              src="img/productos/duelo_madera02.webp"
-              alt="Duelas de madera"
+              src="img/productos/bondex_morteros.webp"
+              alt="Materiales de Construcción"
             />
+            <span class="card-label">Materiales de<br />Construcción</span>
           </div>
           <div class="card" data-rot="4" data-depth="11">
-            <img
-              src="img/productos/bondex_morteros.webp"
-              alt="Bondex mortero para ceramica"
-            />
+            <img src="img/productos/saman_madera02.webp" alt="Muebles" />
+            <span class="card-label">Muebles</span>
           </div>
           <div class="card" data-rot="7" data-depth="9">
             <img
-              src="img/productos/saman_madera02.webp"
-              alt="Pellets de madera"
-            />
-          </div>
-          <div class="card" data-rot="-4" data-depth="13">
-            <img
               src="img/productos/pellets_plasticos02.webp"
-              alt="Pellets plasticos"
+              alt="Agro Insumos"
             />
+            <span class="card-label">Agro<br />Insumos</span>
           </div>
         </div>
       </section>
@@ -349,9 +365,17 @@
           </article>
           <!-- Card 6 — Samán de Madera (full-width) -->
           <article class="pg-card pg-card--fullwidth">
-           <div class="pg-card__image pg-card__image--double">
-              <div style="background-image: url('img/productos/saman_madera.webp');"></div>
-              <div style="background-image: url('img/productos/saman_madera02.webp');"></div>
+            <div class="pg-card__image pg-card__image--double">
+              <div
+                style="
+                  background-image: url(&quot;img/productos/saman_madera.webp&quot;);
+                "
+              ></div>
+              <div
+                style="
+                  background-image: url(&quot;img/productos/saman_madera02.webp&quot;);
+                "
+              ></div>
             </div>
             <div class="pg-card__body">
               <span class="pg-badge pg-badge--madera">06 / Madera</span>
@@ -473,7 +497,7 @@
 
           <ul>
             <li>📞 +593 99 999 9999</li>
-            <li>📧 gerenciaconstecuador@gmail.com</li>
+            <li>📧 gerencia@constecuador.com</li>
             <li>🕒 Lunes - Viernes: 08:00 - 18:00</li>
           </ul>
         </div>
