@@ -787,7 +787,6 @@ html {
   transform: translateX(3px);
 }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
   .pg-card--featured {
     grid-column: span 1;
@@ -803,6 +802,20 @@ html {
 
   .pg-card--featured .pg-card__body {
     padding: 24px;
+  }
+
+  /* Samán: ocultar segunda imagen y fijar altura */
+  .pg-card__image--double > div:last-child {
+    display: none;
+  }
+
+  .pg-card__image--double {
+    width: 100%;
+    height: 210px;
+  }
+
+  .pg-card__image--double > div:first-child {
+    border-bottom: none;
   }
 }
 
